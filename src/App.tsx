@@ -8,10 +8,13 @@ function App() {
   const searchMovies = async (e) => {
     e.preventDefault();
 
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=37765dae77d150a33697e579f4947716&language=en-US&query=${query}&page=1&include_adult=false`;
+    const apiKey = import.meta.env.VITE_MY_VARIABLE;
+
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${query}&page=1&include_adult=false`;
     try {
       const res = await fetch(url);
       const data = await res.json();
+      console.log(data);
       setMovies(data.results);
     } catch (error) {
       console.error(error);
